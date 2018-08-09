@@ -244,15 +244,15 @@ int main() {
     addAlignmentMark(curCell, newPoint(-chip_width/2+0.5e6, 1.75e6));
     addGlobalAlignmentMarkBMSTU(curCell, newPoint(-chip_width/2+0.65e6, 1.75e6-0.025e6)); 
     
-    //layout->booleanTool->boolOnLayer(ground, protect, mask, "A-B", 0, 0, 0);
-    //layout->booleanTool->boolOnLayer(M, mask, total, "A+B", 0, 0, 0);
-    //layout->booleanTool->boolOnLayer(M1, M1, total, "A+B", 0, 0, 0);
-    //clearLayer(curCell, M1); 
+    layout->booleanTool->boolOnLayer(ground, protect, mask, "A-B", 0, 0, 0);
+    layout->booleanTool->boolOnLayer(M, mask, total, "A+B", 0, 0, 0);
+    layout->booleanTool->boolOnLayer(M1, M1, total, "A+B", 0, 0, 0);
+    clearLayer(curCell, M1); 
     
-    layout->booleanTool->boolOnLayer(protect, M, total, "A-B", 0, 0, 0);
-    curCell->addBox(-chip_width/2-border, -chip_height/2-border, chip_width+border*2, chip_height+border*2, aux);
-    layout->booleanTool->boolOnLayer(aux, ground, total, "A-B", 0, 0, 0);
-    clearLayer(curCell, aux); 
+   // layout->booleanTool->boolOnLayer(protect, M, total, "A-B", 0, 0, 0);
+ //   curCell->addBox(-chip_width/2-border, -chip_height/2-border, chip_width+border*2, chip_height+border*2, aux);
+//    layout->booleanTool->boolOnLayer(aux, ground, total, "A-B", 0, 0, 0);
+ //   clearLayer(curCell, aux); 
 
  //   addQR(curCell, qrCodePositionX,qrCodePositionY, qrSize, qrSize, aux); 
 

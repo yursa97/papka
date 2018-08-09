@@ -106,7 +106,7 @@ point addResonator(cell* curCell, point couplingPoint, int w_res, int g_res, dou
     cursor.set(couplingPoint.x(), couplingPoint.y()-w_res/2 - g_res);
     int length = length_from_frequency(frequency, claw)*1e3;
     
-    int resTurnRad = 5*w_res;
+    int resTurnRad = 8*w_res;
     generateStructure(curCell, cursor, w_res, tailLen, length, resTurnRad, aux2);
     generateStructure(curCell, cursor, w_res+2*g_res, tailLen+g_res, length+g_res, resTurnRad, aux3);
     

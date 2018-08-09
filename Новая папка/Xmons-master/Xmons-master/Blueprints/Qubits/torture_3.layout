@@ -46,7 +46,8 @@
         int x = 5e3;
         int tailLen = 1000e3;
         int w_thinGround = 5e3;
-        int L_claw = 60e3;
+	int L_claw_right = 60e3;
+	int L_claw_left= 60e3;
         int w_claw = 20e3;
         int claw_gap = 5e3;
 
@@ -102,7 +103,7 @@ int main() {
     marker = curCell->addText(protect, newPoint(test_cursor.x()-300e3, test_cursor.y()), "TII");
     
     point cursor2;
-        
+         JJ_pads_len = 5.65e3;
          tailLen = 1200e3;
 	 cursor.set(resonatorPositionsX+chip_width/5-1800e3+200e3, -resonatorPositionsY+8*x);
 	cursor2 = addResonator(curCell, cursor, w_res, g_res, res_freqs.at(0), tailLen, "u", "1");
@@ -113,6 +114,8 @@ int main() {
        cursor5 = addXmon(curCell, cursor4, "l", 100, 200, 0);
 
 
+
+
     stringList directions; 
     intList segmentLengths; 
     directions.append("l"); directions.append("u"); 
@@ -120,7 +123,7 @@ int main() {
     addFeedline(curCell, cursor5, w_res, g_res, segmentLengths, directions, "fb");
 
 
-		     JJ_pads_len = 5.65e3;
+		
          tailLen = 1000e3;
         cursor.set(resonatorPositionsX+chip_width/5+1800e3+100e3, -resonatorPositionsY+8*x);
 	cursor2 = addResonator(curCell, cursor, w_res, g_res, res_freqs.at(2), tailLen, "u", "1");

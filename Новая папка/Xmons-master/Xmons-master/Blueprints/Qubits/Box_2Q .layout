@@ -56,6 +56,7 @@
         int w_q = 30e3;
         int g_q = 20e3;
         int arm_len = 0;
+	int claw_gap = 5e3;
 
         doubleList asymmetries;
 

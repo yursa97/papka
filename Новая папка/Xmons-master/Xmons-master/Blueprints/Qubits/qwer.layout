@@ -26,6 +26,7 @@
         int aux4 = 10;
         int bandage = 11;
 	int aux5 = 12;
+      
 
         
         int chip_height = 5e6;
@@ -46,11 +47,10 @@
         int w_thinGround = 5e3;
         int L_claw = 60e3;
         int w_claw = 20e3;
-	int claw_gap = 5e3;
         
         int w_feed = 16e3;
         int g_feed = 8e3;
-      
+      int claw_gap = 5e3;
         int w_q = 20e3;
         int g_q = 20e3;
         int arm_len = 300e3;
@@ -132,24 +132,28 @@ int main() {
         
         cursor.set(resonatorPositionsX+chip_width/5*(1.*j+0.5), -resonatorPositionsY);
         cursor2 = addResonator(curCell, cursor, w_res, g_res, res_freqs.at(k+1), tailLen, "u", 1);
-        cursor2 = addClaw(curCell, cursor2, "u");
-        cursor3.set(cursor2.x()-400e3, cursor2.y());
+        point cursor4 = addClaw(curCell,  newPoint(cursor2.x()+w_res/2, cursor2.y()), "l");
+        point cursor5 = addClaw(curCell,  newPoint(cursor2.x()-w_res/2, cursor2.y()), "r");
+        addXmon(curCell, cursor5, "r", 200, 100, asymmetries.at(k+1));
+        cursor5 = addXmon(curCell, cursor4, "l", 200, 100, asymmetries.at(k+1));
+        
+        cursor3.set(cursor2.x()-50e3, cursor2.y()+400e3);
         marker = curCell->addText(protect, cursor3, roman(k+2));
-        cursor2 = addXmon(curCell, cursor2, "u", 200, 100, asymmetries.at(k+1));
+
         
         stringList directions; 
-        if (k != 3) {
-            directions.append("u"); directions.append("l"); directions.append("u");
+        if (k != 4) {
+            directions.append("l"); directions.append("u"); 
         } else {
-            directions.append("u"); directions.append("r"); directions.append("u");
+            directions.append("l"); directions.append("u"); directions.append("r"); directions.append("u");
         }
         intList segmentLengths; 
-        if (k!=3) {
-            segmentLengths.append(200e3); segmentLengths.append(-(-1+k/2)/4*chip_width + cursor2.x()); segmentLengths.append(chip_height/2 - 200e3-cursor2.y()); 
+        if (k!=4) {
+            segmentLengths.append(-(-1+k/2)/4*chip_width + cursor5.x()); segmentLengths.append(chip_height/2 -cursor5.y()); 
         } else {
-            segmentLengths.append(200e3); segmentLengths.append((-1+k/2)/4*chip_width - cursor2.x()); segmentLengths.append(chip_height/2 - 200e3-cursor2.y()); 
+            segmentLengths.append(200e3); segmentLengths.append(200e3); segmentLengths.append((-1+k/2)/4*chip_width - cursor5.x()+200e3); segmentLengths.append(chip_height/2 - 200e3-cursor5.y()); 
         } 
-        addFeedline(curCell, cursor2, w_res, g_res, segmentLengths, directions, "fb");
+        addFeedline(curCell, cursor5, w_res, g_res, segmentLengths, directions, "fb");
         
         j++;
         k+=2;

@@ -12,7 +12,8 @@ point addXmon(cell* curCell, point anchorPoint, string direction, int w_JJ, int 
         int JJ_delta_arm_len = 8e3;
         int JJ_arm_len = arm_len/2+JJ_delta_arm_len;
         point cursor;
-
+	w_JJ = w_JJ - 30;
+	h_JJ = h_JJ - 30;
 
 	debug(JJ_pads_len);
         
@@ -48,9 +49,9 @@ point addXmon(cell* curCell, point anchorPoint, string direction, int w_JJ, int 
     wire(curCell, aux2, cursor3, "d", (JJ_pads_len+ebeam_overlap)/2+1, 3.25e3); // these two are the narrow pads (after subtraction)
     
     cursor2.set(cursor2.x()-2e3+math::sqrt(1-asymmetry)*h_JJ/2, cursor2.y()-JJ_pads_len-ebeam_overlap);
-    wire(curCell, aux, cursor2, "d", 1e3, math::sqrt(1-asymmetry)*h_JJ);
+    wire(curCell, aux, cursor2, "d", 1.4e3, math::sqrt(1-asymmetry)*h_JJ);
     cursor2.set(cursor2.x()+4e3-h_JJ*math::sqrt(1-asymmetry)/2 - h_JJ*math::sqrt(1+asymmetry)/2, cursor2.y());
-    wire(curCell, aux, cursor2, "d", 1e3, h_JJ*math::sqrt(1+asymmetry));
+    wire(curCell, aux, cursor2, "d", 1.4e3, h_JJ*math::sqrt(1+asymmetry));
     
 
 
@@ -66,9 +67,9 @@ point addXmon(cell* curCell, point anchorPoint, string direction, int w_JJ, int 
     wire(curCell, aux, cursor, "u", JJ_pads_len+ebeam_overlap, 2e3);
     wire(curCell, aux2, newPoint(cursor.x()+0.25e3, cursor.y()+(JJ_pads_len+ebeam_overlap)/2), "u", (JJ_pads_len+ebeam_overlap)/2, 1.5e3);
     cursor.set(cursor.x()-1e3, cursor.y()+ebeam_overlap+JJ_pads_len-w_JJ*math::sqrt(1+asymmetry)/2);
-    wire(curCell, aux, cursor, "l", .9e3, w_JJ*math::sqrt(1+asymmetry));
+    wire(curCell, aux, cursor, "l", .9e3-60, w_JJ*math::sqrt(1+asymmetry));
     cursor.set(cursor.x()-6e3, cursor.y() - w_JJ*math::sqrt(1-asymmetry)/2 + w_JJ*math::sqrt(1+asymmetry)/2);
-    wire(curCell, aux, cursor, "r", .9e3, w_JJ*math::sqrt(1-asymmetry));
+    wire(curCell, aux, cursor, "r", .9e3-60, w_JJ*math::sqrt(1-asymmetry));
     
     
      // ==== Merge aux structure to M1 and bandage
