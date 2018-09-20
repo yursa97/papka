@@ -11,6 +11,7 @@ void clearAllAuxiliaryAux(cell* curCell) {
     curCell->selectLayer(aux2);
     curCell->selectLayer(aux3);    
     curCell->selectLayer(aux4);
+    curCell->selectLayer(aux5);
     layout->drawing->deleteSelect();
     layout->drawing->deselectAll();
 }

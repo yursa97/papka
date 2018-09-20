@@ -31,7 +31,8 @@ x |  |___ >==========~======<  |_____
 #include "wiring.layout"
 #include "auxx.layout"
 
-    int pad_len  = 400e3;
+//    int pad_len  = 400e3;
+    int pad_len  = 300e3;
     int w_pad = 200e3;
     int g_pad = 120e3;
     int bottom_g_pad = g_pad; 
@@ -42,6 +43,7 @@ x |  |___ >==========~======<  |_____
     }
     int fluxBiasLen = 0;
     int fluxBiasInductorLen = 20e3;
+//    int fluxBiasInductorLen = 35e3; //MIPT
     int microwaveDriveLen = 0;
 
 
