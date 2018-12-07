@@ -17,7 +17,7 @@
 
         int M = 0;
         int M1 = 1;
-	int jj_layer = 2;    
+	int jj_layer = 2;
         int protect = 3;
         int ground = 4;
         int mask = 5;
@@ -30,18 +30,18 @@
 	int aux5 = 12;
 	int holes = 14;
 
-        
+
         int chip_height = 5e6;
         int chip_width = 10e6;
         int border=50e3;
-        
+
         int feedlineDepth = chip_height/4;
         double ɛ = 11.45;
         double c = 299792458.0;
 
-        doubleList res_freqs;        
+        doubleList res_freqs;
         doubleList test_res_freqs;
-        
+
         int w_res =7e3;
         int g_res = 4e3;
         int x = 5e3;
@@ -54,7 +54,7 @@
 
         int w_feed = 16e3;
         int g_feed = 8e3;
-      
+
         int w_q = 20e3;
         int g_q = 20e3;
         int arm_len = 300e3;
@@ -72,28 +72,28 @@ int main() {
     layout->drawing->deleteSelect();
     layout->drawing->deselectAll();
 
-        
+
     string sample_name = layout->getText("Sample name","Please enter the sample name:", "Mixed_fb");
-    
+
         int i;
-    
+
     cell *curCell = layout->drawing->currentCell;
     point cursor;
-    
+
     intList segmentLengths;
     stringList directions;
     directions.append("r");
-    
+
     segmentLengths.append(chip_width);
     cursor.set(-chip_width/2, 0);
     addFeedline(curCell, cursor, w_feed, g_feed, segmentLengths, directions, "cp");
 
 
-   
-   
+
+
     // Ground plane
     curCell->addBox(-chip_width/2, -(chip_height)/2, chip_width, chip_height, ground);
-    
+
     int resonatorPositionsX = -chip_width/5;
     int resonatorPositionsY = -w_feed/2-g_feed-x;
     res_freqs.append(6); res_freqs.append(6.1); res_freqs.append(6.2); res_freqs.append(6.3); res_freqs.append(6.4); res_freqs.append(6.5);
@@ -107,7 +107,7 @@ int main() {
     marker = curCell->addText(protect, newPoint(test_cursor.x()-400e3, test_cursor.y()-250e3), "TII");
 
 
-    
+
     point cursor2;
          JJ_pads_len = 5.65e3;
          tailLen = 1000e3;
@@ -123,16 +123,16 @@ int main() {
 	cursor4.set(cursor4.x()-arm_len/2-g_q, cursor4.y()-arm_len/2-g_q);
        cursor4 = addXmon(curCell, cursor4, "u", 140, 140, 0.7);
 
-    stringList directions; 
-    intList segmentLengths; 
-    directions.append("u"); 
-    segmentLengths.append(-cursor4.y()+chip_height/2); 
+    stringList directions;
+    intList segmentLengths;
+    directions.append("u");
+    segmentLengths.append(-cursor4.y()+chip_height/2);
     addFeedline(curCell, cursor4, w_res, g_res, segmentLengths, directions, "fb");
 
-    stringList directions; 
-    intList segmentLengths; 
-    directions.append("u"); 
-    segmentLengths.append(-cursor5.y()+chip_height/2); 
+    stringList directions;
+    intList segmentLengths;
+    directions.append("u");
+    segmentLengths.append(-cursor5.y()+chip_height/2);
     addFeedline(curCell, cursor5, w_res, g_res, segmentLengths, directions, "fb");
 
 
@@ -149,16 +149,16 @@ int main() {
 	cursor4.set(cursor4.x()-arm_len/2-g_q, cursor4.y()-arm_len/2-g_q);
        cursor4 = addXmon(curCell, cursor4, "u", 140,140, 0.7);
 
-    stringList directions; 
-    intList segmentLengths; 
-    directions.append("u"); 
-    segmentLengths.append(-cursor4.y()+chip_height/2); 
+    stringList directions;
+    intList segmentLengths;
+    directions.append("u");
+    segmentLengths.append(-cursor4.y()+chip_height/2);
     addFeedline(curCell, cursor4, w_res, g_res, segmentLengths, directions, "fb");
 
-    stringList directions; 
-    intList segmentLengths; 
-    directions.append("u"); 
-    segmentLengths.append(-cursor5.y()+chip_height/2); 
+    stringList directions;
+    intList segmentLengths;
+    directions.append("u");
+    segmentLengths.append(-cursor5.y()+chip_height/2);
     addFeedline(curCell, cursor5, w_res, g_res, segmentLengths, directions, "fb");
 
 
@@ -194,10 +194,10 @@ int main() {
 	cursor4.set(cursor4.x()-arm_len/2-g_q, cursor4.y()+arm_len/2+g_q);
        cursor4 = addXmon(curCell, cursor4, "d", 140, 140, 0.7);
 
-    stringList directions; 
-    intList segmentLengths; 
-    directions.append("d"); 
-    segmentLengths.append(cursor5.y()+chip_height/2); 
+    stringList directions;
+    intList segmentLengths;
+    directions.append("d");
+    segmentLengths.append(cursor5.y()+chip_height/2);
     addFeedline(curCell, cursor5, w_res, g_res, segmentLengths, directions, "fb");
 
 
@@ -218,10 +218,10 @@ int main() {
 	cursor4.set(cursor4.x()-arm_len/2-g_q, cursor4.y()+arm_len/2+g_q);
        cursor4 = addXmon(curCell, cursor4, "d", 140,140, 0.7);
 
-    stringList directions; 
-    intList segmentLengths; 
-    directions.append("d"); 
-    segmentLengths.append(cursor5.y()+chip_height/2); 
+    stringList directions;
+    intList segmentLengths;
+    directions.append("d");
+    segmentLengths.append(cursor5.y()+chip_height/2);
     addFeedline(curCell, cursor5, w_res, g_res, segmentLengths, directions, "fb");
 
 
@@ -240,7 +240,7 @@ int main() {
 
     curCell->textToPolygon(100e3);
 
-    marker = curCell->addText(protect, newPoint(-chip_width/2+400e3, chip_height/2-400e3), sample_name);    
+    marker = curCell->addText(protect, newPoint(-chip_width/2+400e3, chip_height/2-400e3), sample_name);
     curCell->textToPolygon(150e3);
         JJ_pads_len = 4e3+5.65e3;
     addTestSquid(curCell, newPoint(-chip_width/2+0.8e6, 1.2e6), 140, 140, "u", false, 0.7);
@@ -253,17 +253,17 @@ int main() {
 
     addAlignmentMark(curCell, newPoint(-chip_width/2+0.5e6, -1.75e6));
     addGlobalAlignmentMarkBMSTU(curCell, newPoint(-chip_width/2+0.65e6, -1.75e6+0.025e6));
-    
+
     addAlignmentMark(curCell, newPoint(-chip_width/2+0.5e6, 1.75e6));
     addGlobalAlignmentMarkBMSTU(curCell, newPoint(-chip_width/2+0.65e6, 1.75e6-0.025e6));
 
-addHoles(curCell);
-    
+//addHoles(curCell);
+
    // layout->booleanTool->boolOnLayer(ground, protect, mask, "A-B", 0, 0, 0);
    // layout->booleanTool->boolOnLayer(M, mask, total, "A+B", 0, 0, 0);
     //layout->booleanTool->boolOnLayer(M1, total, total, "A+B", 0, 0, 0);
     //clearLayer(curCell, M1);
-    
+
    layout->booleanTool->boolOnLayer(protect, M, total, "A-B", 0, 0, 0);
    curCell->addBox(-chip_width/2-border, -chip_height/2-border, chip_width+border*2, chip_height+border*2, aux);
    layout->booleanTool->boolOnLayer(aux, ground, total, "A-B", 0, 0, 0);
@@ -273,7 +273,7 @@ addHoles(curCell);
    clearLayer(curCell, aux);
   //  clearLayer(curCell, aux5);
 
-    
+
     int hd;
     layout->backgroundTool->clearBackground();
 /*    hd = layout->backgroundTool->addBackground("background.png");*/
@@ -288,6 +288,6 @@ addHoles(curCell);
     //debug.show();
     //debug.clear();
     
-    
-    
+
+
 }
